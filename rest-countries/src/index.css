@@ -1,68 +1,47 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@theme {
+    --breakpoint-xs: 480px;
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1536px;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
+
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+    font-family: "Nunito Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-variation-settings: "wdth" 100, "YTLC" 500;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
+/* Base Theme Variables */
+@layer base {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    --background: hsl(0, 0%, 99%);
+    --foreground: 200 15% 8%;
+    --element: hsl(0, 0%, 100%);
   }
-  a:hover {
-    color: #747bff;
+
+  .dark {
+    --background: hsl(207, 26%, 17%);
+    --foreground: 0 0% 100%;
+    --element: hsl(209, 23%, 22%);
   }
-  button {
-    background-color: #f9f9f9;
+
+  body {
+    background-color: var(--background);
+    color: hsl(var(--foreground));
+    transition: background-color 0.3s, color 0.3s;
+    
+  }
+
+  .card {
+    background-color: var(--element);
+    color: hsl(var(--foreground));
+    transition: background-color 0.3s, color 0.3s;
   }
 }
