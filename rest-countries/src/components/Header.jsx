@@ -11,7 +11,7 @@ const Header = () => {
       <div>
         <button
           onClick={toggleTheme}
-          className='flex items-center gap-2 border border-gray-300 p-1 px-2 rounded-sm'
+          className='flex items-center gap-2 cursor-pointer p-1 px-2'
         >
           <img src={theme === 'light' ? lightMoon : darkMoon} alt="theme icon" />
           Dark Mode

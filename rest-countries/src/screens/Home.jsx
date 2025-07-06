@@ -22,15 +22,16 @@ const Home = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('/data.json')
-                setCountries(response.data)
+                const response = await axios.get('/data.json'); // ✅ Correct path from public
+                setCountries(response.data);
             } catch (error) {
-                console.error(error)
+                console.error('Error loading country data:', error);
             }
-        }
-
-        fetchData()
-    }, [])
+        };
+    
+        fetchData();
+    }, []);
+    
 
     const regions = [...new Set(countries.map(c => c.region).filter(Boolean))];
 
