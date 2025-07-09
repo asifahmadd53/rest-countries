@@ -87,7 +87,7 @@ useEffect(() => {
                                   }}
                                     key={region}
                                     role="menuitem"
-                                    className="cursor-pointer text-foreground bg-element text-sm flex w-full items-center rounded-md p-3 transition-all duration-200   hover:scale-[1.02]"
+                                    className="cursor-pointer text-foreground bg-element text-sm flex w-full items-center rounded-md p-2 transition-all duration-200 hover:scale-[1.02]"
                                 >
                                     {region}
                                 </li>
