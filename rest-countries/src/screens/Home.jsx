@@ -67,7 +67,7 @@ useEffect(() => {
                 <div className="relative">
                     <button
                         onClick={toggleDropDown}
-                        className="rounded-md bg-background py-2 px-4 lg:px-8 xl:px-10 border border-transparent text-center text-sm text-foreground transition-all shadow-[0_2px_6px_rgba(0,0,0,0.1),_0_8px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_10px_rgba(0,0,0,0.12),_0_12px_28px_rgba(0,0,0,0.1)] "
+                        className="rounded-md bg-background py-2 px-4 lg:px-10 xl:px-11 border border-transparent text-center text-sm text-foreground transition-all shadow-[0_2px_6px_rgba(0,0,0,0.1),_0_8px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_10px_rgba(0,0,0,0.12),_0_12px_28px_rgba(0,0,0,0.1)] "
                         type="button"
                     >
                        {selectedRegion ? selectedRegion : 'Filter by region'}
@@ -92,7 +92,7 @@ useEffect(() => {
                                     {region}
                                 </li>
                             ))}
-                            {/* <li
+                            <li
                 onClick={() => {
                   setSelectedRegion('');
                   setShowRegions(false);
@@ -100,7 +100,7 @@ useEffect(() => {
                 className="px-4 py-2 text-red-500 hover:bg-gray-100 cursor-pointer"
               >
                 Clear Filter
-              </li> */}
+              </li>
                         </ul>
                     )}
                 </div>

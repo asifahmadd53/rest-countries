@@ -42,7 +42,7 @@ const CountryDetail = () => {
   return (
    
    
-    <main className="px-4 py-8 lg:px-20 lg:py-16">
+    <main className="px-6 md:px-12 lg:px-16 xl:px-20 py-6">
     {/* Back Button */}
     <button
       onClick={handleBack}
