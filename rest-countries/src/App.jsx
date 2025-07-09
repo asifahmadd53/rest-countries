@@ -2,7 +2,7 @@ import React from 'react'
 import Header from './components/Header'
 import Home from './screens/Home'
 import { Route, Routes } from 'react-router'
-import CountryPage from './screens/CountryPage'
+import CountryPage from './screens/CountryDetail'
 
 const App = () => { 
     

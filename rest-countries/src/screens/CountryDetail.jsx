@@ -12,13 +12,14 @@ const CountryDetail = () => {
     const navigate = useNavigate()
     const { id } = useParams();
     const [countries, setCountries] = useState([]);
+    
     const handleBack = () => {
     navigate(-1); 
     }
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const res = await axios.get('/data.json'); // ✅ This fetches from public/data.json
+          const res = await axios.get('/data.json'); 
           setCountries(res.data);
         } catch (err) {
           console.error('Failed to load country data:', err);
@@ -55,7 +56,7 @@ const CountryDetail = () => {
       <div className="mb-8 lg:mb-0 lg:flex-1 lg:max-w-lg">
         <div className="aspect-[3/2] mx-auto lg:mx-0 sm:justify-center w-full sm:w-[70%] overflow-hidden rounded shadow-lg">
           <img
-            src={country.flags?.png || country.flag || '/placeholder.svg'}
+            src={country.flags?.png || country.flag}
             alt={`${country.name} flag`}
             className="w-full h-full object-cover"
           />
