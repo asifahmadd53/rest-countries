@@ -19,24 +19,27 @@ const Home = () => {
     
     const { theme } = useContext(ThemeContext)
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('/data.json'); // ✅ Correct path from public
-                setCountries(response.data);
-            } catch (error) {
-                console.error('Error loading country data:', error);
-            }
-        };
-    
-        fetchData();
-    }, []);
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        'https://restcountries.com/v3.1/all?fields=name,flags,region,capital,population'
+      );
+      setCountries(response.data);
+    } catch (error) {
+      console.error('Error loading country data:', error);
+    }
+  };
+
+  fetchData();
+}, []);
+
     
 
     const regions = [...new Set(countries.map(c => c.region).filter(Boolean))];
 
     const filteredCountries = countries.filter(country => {
-        const matchSarch = country.name.toLowerCase().includes(searchCountries.toLowerCase())
+        const matchSarch = country.name.common.toLowerCase().includes(searchCountries.toLowerCase()) 
         const matchRegion = selectedRegion ? country.region === selectedRegion : true
         return matchSarch && matchRegion;
     })
@@ -45,6 +48,7 @@ const Home = () => {
 
 
     return (
+  
         <div className="px-6 md:px-12 lg:px-16 xl:px-20 py-6">
 
             <div className="flex gap-y-4 items-start justify-between gap-2 flex-wrap mb-6 relative mt-5 ">
@@ -108,7 +112,7 @@ const Home = () => {
                         <CountryCard
                             key={index}
                             png={item.flags.png}
-                            name={item.name}
+                            name={item.name.common}
                             population={item.population}
                             region={item.region}
                             capital={item.capital}
@@ -118,6 +122,7 @@ const Home = () => {
 
             </div>
         </div>
+       
     )
 }
 

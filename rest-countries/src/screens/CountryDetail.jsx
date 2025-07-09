@@ -16,10 +16,11 @@ const CountryDetail = () => {
     const handleBack = () => {
     navigate(-1); 
     }
+    
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const res = await axios.get('/data.json'); 
+          const res = await axios.get('https://restcountries.com/v3.1/all?fields=name,flags,region,subregion,capital,population,currencies,languages,borders,tld');
           setCountries(res.data);
         } catch (err) {
           console.error('Failed to load country data:', err);
@@ -31,7 +32,7 @@ const CountryDetail = () => {
   
     // ✅ Find the country by name
     const country = countries.find(
-      (c) => c.name.toLowerCase().replace(/\s+/g, '-') === id
+      (c) => c.name.common.toLowerCase().replace(/\s+/g, '-') === id
     );
     
     if (!country) return <p className="p-8">Country not found</p>;
@@ -39,6 +40,7 @@ const CountryDetail = () => {
    
 
   return (
+   
    
     <main className="px-4 py-8 lg:px-20 lg:py-16">
     {/* Back Button */}
@@ -57,7 +59,7 @@ const CountryDetail = () => {
         <div className="aspect-[3/2] mx-auto lg:mx-0 sm:justify-center w-full sm:w-[70%] overflow-hidden rounded shadow-lg">
           <img
             src={country.flags?.png || country.flag}
-            alt={`${country.name} flag`}
+            alt={`${country.name.common} flag`}
             className="w-full h-full object-cover"
           />
         </div>
@@ -66,7 +68,7 @@ const CountryDetail = () => {
       {/* Country Information */}
       <div className="lg:flex-1 lg:max-w-2xl">
         <h2 className="text-2xl lg:text-3xl font-bold tracking-wide mb-6 lg:mb-8">
-          {country.name}
+          {country.name.common}
         </h2>
 
         {/* Info Grid */}
@@ -75,7 +77,9 @@ const CountryDetail = () => {
           <div className="space-y-2 mb-8 lg:mb-0">
             <p className="text-sm lg:text-base">
               <span className="font-semibold tracking-wide">Native Name: </span>
-              <span className=" text-forground">{country.nativeName}</span>
+              <span className=" text-forground">
+                {country.name.nativeName ? Object.values(country.name.nativeName)[0].common : 'N/A'}
+              </span>
             </p>
             <p className="text-sm lg:text-base">
               <span className="font-semibold tracking-wide">Population: </span>
@@ -99,20 +103,20 @@ const CountryDetail = () => {
           <div className="space-y-2 mb-8 lg:mb-0">
             <p className="text-sm lg:text-base">
               <span className="font-semibold tracking-wide">Top Level Domain: </span>
-              <span className=" text-forground">
-                {country.topLevelDomain && country.topLevelDomain[0]}
+              <span className="text-forground">
+                {country.tld && country.tld[0]}
               </span>
             </p>
             <p className="text-sm lg:text-base">
               <span className="font-semibold tracking-wide">Currencies: </span>
               <span className=" text-forground">
-                {country.currencies && country.currencies[0]?.name}
+                {country.currencies && Object.values(country.currencies)[0]?.name}
               </span>
             </p>
             <p className="text-sm lg:text-base">
               <span className="font-semibold tracking-wide">Languages: </span>
               <span className=" text-forground">
-                {country.languages && country.languages[0]?.name}
+                {country.languages && Object.values(country.languages).join(', ')}
               </span>
             </p>
           </div>
@@ -145,6 +149,7 @@ const CountryDetail = () => {
       </div>
     </div>
   </main>
+ 
 
     
   )
