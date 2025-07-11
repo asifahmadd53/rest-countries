@@ -68,7 +68,7 @@ const Home = () => {
                     <button
                         onClick={toggleDropDown}
                         type="button"
-                        className="rounded-md flex items-center justify-between bg-background py-2 lg:py-3 px-4  border border-transparent text-sm text-foreground transition-all shadow-md hover:shadow-lg w-full sm:w-auto"
+                        className="rounded-md flex items-center justify-between bg-background max-w-56 px-3 py-3 border border-transparent text-sm text-foreground transition-all shadow-md  w-full sm:w-auto"
                     >
                         <span>{selectedRegion ? selectedRegion : 'Filter by region'}</span>
                         <img className="ml-10 w-3 h-3 lg:w-4 lg:h-4" src={theme === "light" ? down : downLight} alt="" />
@@ -79,7 +79,16 @@ const Home = () => {
                         <ul
                             role="menu"
                             className="absolute top-full mt-1 left-0 z-10 min-w-full overflow-auto rounded-lg border-slate-200 bg-background p-1.5 shadow-md card"
-                        >
+                        > 
+                         <li
+                                onClick={() => {
+                                    setSelectedRegion('');
+                                    setShowRegions(false);
+                                }}
+                                className="cursor-pointer text-foreground bg-element text-sm flex w-full items-center rounded-md p-2 transition-all duration-200 hover:scale-[1.02]"
+                            >
+                                Filter by region
+                            </li>
                             {regions.map((region) => (
                                 <li
                                     onClick={() => {
@@ -93,21 +102,13 @@ const Home = () => {
                                     {region}
                                 </li>
                             ))}
-                            <li
-                                onClick={() => {
-                                    setSelectedRegion('');
-                                    setShowRegions(false);
-                                }}
-                                className="px-4 py-2 text-red-500 hover:bg-gray-100 cursor-pointer"
-                            >
-                                Clear Filter
-                            </li>
+                          
                         </ul>
                     )}
                 </div>
             </div>
 
-            <div className="flex flex-wrap justify-center items-center lg:justify-between gap-6 lg:gap-10 xl:gap-12 mt-12">
+            <div className="flex flex-wrap justify-center items-center lg:mx-auto gap-6 lg:gap-10 xl:gap-12 mt-12">
                 {filteredCountries.map((item, index) => {
                     return (
                         <CountryCard

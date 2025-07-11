@@ -12,18 +12,20 @@ const CountryDetail = () => {
   const navigate = useNavigate()
   const { id } = useParams();
   const [countries, setCountries] = useState([]);
-
+  const [loading, setLoading] = useState(true); 
   const handleBack = () => {
     navigate(-1);
   }
 
-  useEffect(() => {
+ useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get('https://restcountries.com/v3.1/all?fields=name,flags,region,subregion,capital,population,currencies,languages,borders,tld');
         setCountries(res.data);
       } catch (err) {
         console.error('Failed to load country data:', err);
+      }finally{
+        setLoading(false);
       }
     };
     fetchData();
@@ -34,6 +36,15 @@ const CountryDetail = () => {
   const country = countries.find(
     (c) => c.name.common.toLowerCase().replace(/\s+/g, '-') === id
   );
+
+  if (loading) {
+    return (
+      <div className="h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-10 w-10 border-4 border-t-transparent border-gray-400"></div>
+        <span className="ml-4 text-gray-700">Loading country details...</span>
+      </div>
+    );
+  }
 
   if (!country) return <p className="p-8">Country not found</p>;
 
@@ -56,11 +67,11 @@ const CountryDetail = () => {
       <div className="lg:flex items-center lg:-space-x-10 xl:-space-x-14 bg-element">
         {/* Flag */}
         <div className="mb-8 lg:mb-0 lg:flex-1 lg:max-w-lg">
-          <div className="aspect-[3/2] lg:aspect-[8/7] mx-auto lg:mx-0 sm:justify-center w-full sm:w-[70%] overflow-hidden">
+          <div className="aspect-[3/2] lg:aspect-[9.5/7] mx-auto lg:mx-0 sm:justify-center w-full sm:w-[70%] overflow-hidden rounded-md">
             <img
               src={country.flags?.png || country.flag}
               alt={`${country.name.common} flag`}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover "
             />
           </div>
         </div>
