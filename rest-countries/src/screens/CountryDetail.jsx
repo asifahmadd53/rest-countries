@@ -37,14 +37,15 @@ const CountryDetail = () => {
     (c) => c.name.common.toLowerCase().replace(/\s+/g, '-') === id
   );
 
-  if (loading) {
-    return (
-      <div className="h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-10 w-10 border-4 border-t-transparent border-gray-400"></div>
-        <span className="ml-4 text-gray-700">Loading country details...</span>
-      </div>
-    );
-  }
+if (loading) {
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-20">
+      <div className="animate-spin rounded-full h-10 w-10 border-4 border-t-transparent border-gray-400"></div>
+      <span className="mt-4 text-gray-700 text-sm">Loading country details...</span>
+    </div>
+  );
+}
+
 
   if (!country) return <p className="p-8">Country not found</p>;
 
