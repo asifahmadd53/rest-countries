@@ -68,10 +68,10 @@ const Home = () => {
                     <button
                         onClick={toggleDropDown}
                         type="button"
-                        className="rounded-md flex items-center justify-between bg-background max-w-56 px-3 py-3 border border-transparent text-sm text-foreground transition-all shadow-md  w-full sm:w-auto"
+                        className="rounded-md flex items-center justify-between bg-background min-w-40 max-w-40 px-3 py-3 border border-transparent text-sm text-foreground transition-all shadow-md sm:w-auto"
                     >
                         <span>{selectedRegion ? selectedRegion : 'Filter by region'}</span>
-                        <img className="ml-10 w-3 h-3 lg:w-4 lg:h-4" src={theme === "light" ? down : downLight} alt="" />
+                        <img className="ml-5 w-3 h-3 lg:w-4 lg:h-4" src={theme === "light" ? down : downLight} alt="" />
                     </button>
 
 
