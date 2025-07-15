@@ -46,8 +46,6 @@ const Home = () => {
         return matchSarch && matchRegion;
     })
 
-
-
     if (countries.length === 0) {
         return (
             <div className="min-h-screen flex items-center justify-center overflow-hidden">
