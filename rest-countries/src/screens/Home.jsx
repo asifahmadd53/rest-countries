@@ -38,11 +38,24 @@ const Home = () => {
 
     const regions = [...new Set(countries.map(c => c.region).filter(Boolean))];
 
+    const trimSearch = searchCountries.trim().toLowerCase()
+
     const filteredCountries = countries.filter(country => {
-        const matchSarch = country.name.common.toLowerCase().includes(searchCountries.toLowerCase())
+        const matchSarch = country.name.common.toLowerCase().includes(trimSearch)
         const matchRegion = selectedRegion ? country.region === selectedRegion : true
         return matchSarch && matchRegion;
     })
+
+
+
+    if (countries.length === 0) {
+        return (
+            <div className="min-h-screen flex items-center justify-center overflow-hidden">
+                <div className="animate-spin rounded-full h-10 w-10 border-4 border-t-transparent border-gray-400"></div>
+            </div>
+        );
+    }
+
 
 
 
@@ -79,15 +92,16 @@ const Home = () => {
                         <ul
                             role="menu"
                             className="absolute top-full mt-1 left-0 z-10 min-w-full overflow-auto rounded-lg border-slate-200 bg-background p-1.5 shadow-md card"
-                        > 
-                         <li
+                        >
+
+                            <li
                                 onClick={() => {
                                     setSelectedRegion('');
                                     setShowRegions(false);
                                 }}
                                 className="cursor-pointer text-foreground bg-element text-sm flex w-full items-center rounded-md p-2 transition-all duration-200 hover:scale-[1.02]"
                             >
-                                Filter by region
+                                All
                             </li>
                             {regions.map((region) => (
                                 <li
@@ -102,15 +116,17 @@ const Home = () => {
                                     {region}
                                 </li>
                             ))}
-                          
+
                         </ul>
                     )}
                 </div>
             </div>
 
             <div className="flex flex-wrap justify-center items-center lg:mx-auto gap-6 lg:gap-10 xl:gap-12 mt-12">
-                {filteredCountries.map((item, index) => {
-                    return (
+                {filteredCountries.length === 0 ? (
+                    <p className="text-center text-foreground text-lg font-semibold">There is no country like this.</p>
+                ) : (
+                    filteredCountries.map((item, index) => (
                         <CountryCard
                             key={index}
                             png={item.flags.png}
@@ -119,8 +135,9 @@ const Home = () => {
                             region={item.region}
                             capital={item.capital}
                         />
-                    )
-                })}
+                    ))
+                )}
+
 
             </div>
         </div>

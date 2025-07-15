@@ -13,6 +13,7 @@ const CountryDetail = () => {
   const { id } = useParams();
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true); 
+
   const handleBack = () => {
     navigate(-1);
   }
@@ -37,6 +38,7 @@ const CountryDetail = () => {
     (c) => c.name.common.toLowerCase().replace(/\s+/g, '-') === id
   );
 
+
 if (loading) {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 py-20">
@@ -48,7 +50,6 @@ if (loading) {
 
 
   if (!country) return <p className="p-8">Country not found</p>;
-
 
 
   return (
@@ -95,7 +96,7 @@ if (loading) {
               </p>
               <p className="text-sm ">
                 <span className="font-semibold tracking-wide">Population: </span>
-                <span className=" text-forground font-extralight">{country.population.toLocaleString()}</span>
+                <span className="text-forground font-extralight">{country.population.toLocaleString()}</span>
               </p>
               <p className="text-sm ">
                 <span className="font-semibold tracking-wide">Region: </span>
