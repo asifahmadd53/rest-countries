@@ -3,36 +3,24 @@ import CountryCard from '../components/CountryCard'
 import axios from 'axios'
 import ThemeContext from '../context/ThemeContext'
 import { search, searchDark, down, downLight } from '../constants/icons'
+import CountryContext from '../context/CountryContext'
 
 
 const Home = () => {
 
-    const [countries, setCountries] = useState([]);
     const [searchCountries, setSearchCountries] = useState('')
     const [selectedRegion, setSelectedRegion] = useState('')
     const [showRegions, setShowRegions] = useState(false);
+    const {countries} = useContext(CountryContext) 
 
-
+    
     const toggleDropDown = () => {
         setShowRegions(!showRegions);
     }
 
     const { theme } = useContext(ThemeContext)
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(
-                    'https://restcountries.com/v3.1/all?fields=name,flags,region,capital,population'
-                );
-                setCountries(response.data);
-            } catch (error) {
-                console.error('Error loading country data:', error);
-            }
-        };
-
-        fetchData();
-    }, []);
+    
 
 
 
@@ -48,7 +36,7 @@ const Home = () => {
 
     if (countries.length === 0) {
         return (
-            <div className="min-h-screen flex items-center justify-center overflow-hidden">
+            <div className="min-h-screen max-h-screen flex items-center justify-center overflow-hidden">
                 <div className="animate-spin rounded-full h-10 w-10 border-4 border-t-transparent border-gray-400"></div>
             </div>
         );
