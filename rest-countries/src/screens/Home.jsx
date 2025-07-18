@@ -1,10 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import CountryCard from '../components/CountryCard'
-import axios from 'axios'
 import ThemeContext from '../context/ThemeContext'
 import { search, searchDark, down, downLight } from '../constants/icons'
 import CountryContext from '../context/CountryContext'
-
 
 const Home = () => {
 
@@ -13,16 +11,12 @@ const Home = () => {
     const [showRegions, setShowRegions] = useState(false);
     const {countries} = useContext(CountryContext) 
 
-    
+
     const toggleDropDown = () => {
         setShowRegions(!showRegions);
     }
 
     const { theme } = useContext(ThemeContext)
-
-    
-
-
 
     const regions = [...new Set(countries.map(c => c.region).filter(Boolean))];
 
